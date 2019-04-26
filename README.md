@@ -49,17 +49,17 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> print(x)
 tensor([[0.8631, 0.1452, 0.4480],
         [0.2124, 0.6833, 0.6346],
-                [0.9590, 0.0705, 0.0502],
-                        [0.3226, 0.2670, 0.3571],
-                                [0.7307, 0.6423, 0.3341]])
-                                >>>
-                                ```
+        [0.9590, 0.0705, 0.0502],
+        [0.3226, 0.2670, 0.3571],
+        [0.7307, 0.6423, 0.3341]])
+>>>
+```
 
-                                You can find additional TVM Docker images (including GPU support) at:
-                                [https://github.com/dmlc/tvm/tree/master/docker](https://github.com/dmlc/tvm/tree/master/docker), and related instructions at: [https://docs.tvm.ai/install/docker.html](https://docs.tvm.ai/install/docker.html).
+You can find additional TVM Docker images (including GPU support) at:
+[https://github.com/dmlc/tvm/tree/master/docker](https://github.com/dmlc/tvm/tree/master/docker), and related instructions at: [https://docs.tvm.ai/install/docker.html](https://docs.tvm.ai/install/docker.html).
 
-                                TVM Tutorials
-                                ---
+TVM Tutorials
+---
 
-                                You can use the Docker image to try out TVM's extensive tutorials available at: [https://docs.tvm.ai/tutorials/index.html](https://docs.tvm.ai/tutorials/index.html).
+You can use the Docker image to try out TVM's extensive tutorials available at: [https://docs.tvm.ai/tutorials/index.html](https://docs.tvm.ai/tutorials/index.html).
 
