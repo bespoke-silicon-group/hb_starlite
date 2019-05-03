@@ -30,9 +30,6 @@ RUN pip3 install torch torchvision
 COPY install/install_tvm_cpu.sh /install/install_tvm_cpu.sh
 RUN bash /install/install_tvm_cpu.sh
 
-# Environment variables
-ENV PYTHONPATH=/usr/tvm/python:/usr/tvm/topi/python:/usr/tvm/nnvm/python/:/usr/tvm/vta/python:${PYTHONPATH}
-
 
 # GraphIt dependencies
 RUN apt-get install -y libncurses-dev 
@@ -55,3 +52,6 @@ RUN tar zxf /install/hbpintool.tar.gz && \
 RUN apt-get install -y python less
 
 ENTRYPOINT sudo echo 0 > /proc/sys/kernel/yama/ptrace_scope && /bin/bash
+
+# Environment variables
+ENV PYTHONPATH "/usr/tvm/python:/usr/tvm/topi/python:/usr/tvm/nnvm/python/:/usr/tvm/vta/python"

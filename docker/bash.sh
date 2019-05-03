@@ -73,6 +73,7 @@ echo "Running '${COMMAND[@]}' inside ${DOCKER_IMAGE_NAME}..."
 # By default we cleanup - remove the container once it finish running (--rm)
 # and share the PID namespace (--pid=host) so the process inside does not have
 # pid 1 and SIGKILL is propagated to the process inside (jenkins can kill it).
+    #-e "PYTHONPATH=python:topi/python"\
 echo ${DOCKER_BINARY}
 ${DOCKER_BINARY} run  --privileged  --rm --pid=host\
     -v ${WORKSPACE}:/workspace \
@@ -83,7 +84,6 @@ ${DOCKER_BINARY} run  --privileged  --rm --pid=host\
     -e "CI_BUILD_UID=$(id -u)" \
     -e "CI_BUILD_GROUP=$(id -g -n)" \
     -e "CI_BUILD_GID=$(id -g)" \
-    -e "PYTHONPATH=python:topi/python"\
     ${CUDA_ENV}\
     ${CI_DOCKER_EXTRA_PARAMS[@]} \
     ${DOCKER_IMAGE_NAME}\
