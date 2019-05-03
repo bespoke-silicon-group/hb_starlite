@@ -16,7 +16,7 @@ Running the Container
 
 To run the container, use our launch script to pull it from [Docker Hub][hub]:
 
-    $ ./docker/bash.sh mutinifni/sdh-tvm-pytorch:both
+    $ ./docker/bash.sh mutinifni/sdh-tvm-pytorch:latest
 
 You might need root permissions based on your local Docker setup (so try this with `sudo` if it doesn't work without it).
 
