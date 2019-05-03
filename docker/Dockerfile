@@ -32,3 +32,26 @@ RUN bash /install/install_tvm_cpu.sh
 
 # Environment variables
 ENV PYTHONPATH=/usr/tvm/python:/usr/tvm/topi/python:/usr/tvm/nnvm/python/:/usr/tvm/vta/python:${PYTHONPATH}
+
+
+# GraphIt dependencies
+RUN apt-get install -y libncurses-dev 
+# GraphIt
+RUN git clone https://github.com/GraphIt-DSL/graphit && \
+	cd graphit && \
+	git checkout 4758c2e7e027e0f1e14c7cc66a3dfaf5f8877ccf && \
+	mkdir -p build && \
+	cd build && \
+	cmake .. && \
+	make -j 16
+
+# HBPintool
+COPY install/hbpintool.tar.gz /install/hbpintool.tar.gz
+RUN tar zxf /install/hbpintool.tar.gz && \
+	cd /hbpintool && \
+	./configure && \
+	make
+
+RUN apt-get install -y python less
+
+ENTRYPOINT sudo echo 0 > /proc/sys/kernel/yama/ptrace_scope && /bin/bash
