@@ -58,6 +58,19 @@ tensor([[0.8631, 0.1452, 0.4480],
 You can find additional TVM Docker images (including GPU support) at:
 [https://github.com/dmlc/tvm/tree/master/docker](https://github.com/dmlc/tvm/tree/master/docker), and related instructions at: [https://docs.tvm.ai/install/docker.html](https://docs.tvm.ai/install/docker.html).
 
+Profiling
+---
+
+We recommend that testers use the PyTorch frontend for development.
+Then, to profile an implementation you've created, we recommend you use TVM.
+To do so, you will need to export the PyTorch model as [ONNX][] and import into TVM.
+Follow these steps:
+
+1. Export the model. Use [torch.onnx.export](https://pytorch.org/docs/master/onnx.html) to save your model to an ONNX file.
+2. Import the model into TVM and compile. See [the TVM tutorial about importing ONNX models](https://docs.tvm.ai/tutorials/frontend/from_onnx.html#sphx-glr-tutorials-frontend-from-onnx-py).
+
+[onnx]: https://onnx.ai
+
 TVM Tutorials
 ---
 
