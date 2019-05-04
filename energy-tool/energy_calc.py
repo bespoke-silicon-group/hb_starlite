@@ -72,7 +72,7 @@ def execute_perf(exec_cmd):
 def calculate_energy_cpu(perf_data):
     energy = 0
     # due to general instructions
-    energy += perf_data['cycles'] * Xeon_IPC * energy_per_inst
+    energy += perf_data['instructions'] * energy_per_inst
     # due to floating point instructions
     float_insts = perf_data['r530110'] + perf_data['r531010'] * 2 + perf_data['r532010'] + perf_data['r534010'] * 4 + perf_data['r538010']
     energy += float_insts * energy_per_fp
