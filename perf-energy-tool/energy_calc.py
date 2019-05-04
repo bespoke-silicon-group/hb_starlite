@@ -28,7 +28,7 @@ stat_types = [
 Xeon_IPC = 3
 cacheline_size_bits = 64 * 8
 energy_per_inst = 1000
-energy_per_fp = 3.7
+energy_per_fp = 190
 energy_per_cache_access = 100
 DDR4_energy_per_bit = 60
 

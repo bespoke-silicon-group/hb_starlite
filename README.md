@@ -81,6 +81,21 @@ The models it uses to calculate energy factors in the parallelism for the releva
 #### Intel 64
 This tool can only run on Intel x86_64 processors.
 
+### Perf Energy Tool
+
+This tool estimates the energy consumption of TVM programs (and any other program as well) for the Intel E7-8894 v4 CPU. The tool must be run on this CPU to obtain appropriate estimates. It depends on the `perf` utility to read the CPU performance counters.
+
+#### Usage
+
+The tool is located in the `perf-energy-tool` folder.
+
+	Usage options:
+	1) If testing ordinary executable:
+	             python3 energy_calc.py <executable>
+	2) If testing Python program:
+	             python3 energy_calc.py python3 <program.py>
+
+
 Profiling
 ---------
 
