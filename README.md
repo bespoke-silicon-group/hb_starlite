@@ -2,8 +2,17 @@ Starlite: A Programmability Testing Environment for HammerBlade
 ===============================================================
 
 This repository contains a setup for evaluating the programming infrastructure for the HammerBlade project.
-The main component is a [Docker][] container setup that includes [TVM][], [PyTorch][], and [GraphIt][].
-There are also tools for estimating the energy consumption of programs implemented using this infrastructure.
+HammerBlade is a custom architecture that is programmable using the domain specific languages [PyTorch][], and [GraphIt][]. 
+[PyTorch][] is a popular prototyping language for ML computations, and [GraphIt][] is an MIT-developed programming
+language for developing and tuning graph computations. Our [PyTorch][] tool flow maps down on to the [TVM][] ML optimization
+flow, which in itself is a ML-programming language. In some cases, it may be more convenient to use [TVM][] directly.
+
+To help users evaluate the usability of our programming interface, we have provided this repository, which contains
+both domain specific languages, and also an energy profiling feature that allows users to get a "compass reading"
+on how changes to their code affect energy efficiency.
+
+To help deploy this toolchain, we have provided in this repository a [Docker][] container setup that includes [PyTorch][], [GraphIt][], and tools for estimating the energy consumption of programs implemented using this infrastructure. Here
+are the links to the component of this infrastructure so that you may get more information on them:
 
 [tvm]: https://tvm.ai
 [pytorch]: https://pytorch.org
