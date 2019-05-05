@@ -52,7 +52,7 @@ Then, depending on the task you want to accomplish, explore [the full set of PyT
 
 ### TVM
 
-You can also opt to use [TVM][] directly, especially via its [MXNet][] frontend.
+You can also opt to use **TVM** directly, especially via its [MXNet][] frontend.
 See the extensive list of [tutorials that come with TVM][tvm-tut].
 
 [tvm-tut]: https://docs.tvm.ai/tutorials/
