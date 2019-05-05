@@ -8,7 +8,7 @@ flow, which in itself is a ML-programming language. In some cases, it may be mor
 
 To help users evaluate the usability of our programming interface, we have provided this repository, which contains
 both domain specific languages, and also an energy profiling feature that allows users to get a "compass reading"
-on how changes to their code affect energy efficiency. We thank you for working on this, and apologize for any snags encountered -- the tools are very cutting edge, and doing very advanced code and data transformations, so it is wise to expect a few snags along the way. We are here to help -- please contact us if you are encountering unexpected issues.
+on how changes to their code affect energy efficiency. We thank you for working on this, and apologize for any snags encountered—the tools are very cutting edge, and doing very advanced code and data transformations, so it is wise to expect a few snags along the way. We are here to help—please contact us if you are encountering unexpected issues.
 
 To help deploy this toolchain, we have provided in this repository a [Docker][] container setup that includes [PyTorch][], [GraphIt][], and tools for estimating the energy consumption of programs implemented using this infrastructure.
 
