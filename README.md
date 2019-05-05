@@ -2,24 +2,20 @@ Starlite: A Programmability Testing Environment for HammerBlade
 ===============================================================
 
 This repository contains a setup for evaluating the programming infrastructure for the HammerBlade project.
-HammerBlade is a custom architecture that is programmable using the domain specific languages **PyTorch**, and **GraphIt**. **PyTorch** is a popular prototyping language for ML computations, and **GraphIt** is an MIT-developed programming
-language for developing and tuning graph computations. Our **PyTorch** tool flow maps down on to the **TVM** ML optimization
-flow, which in itself is a ML-programming language. In some cases, it may be more convenient to use **TVM** directly.
+HammerBlade is a custom architecture that is programmable using the domain specific languages [PyTorch][], and [GraphIt][]. [PyTorch][] is a popular prototyping language for ML computations, and [GraphIt][] is an MIT-developed programming
+language for developing and tuning graph computations. Our [PyTorch][] tool flow maps down on to the [TVM][] ML optimization
+flow, which in itself is a ML-programming language. In some cases, it may be more convenient to use [TVM][] directly.
 
 To help users evaluate the usability of our programming interface, we have provided this repository, which contains
 both domain specific languages, and also an energy profiling feature that allows users to get a "compass reading"
 on how changes to their code affect energy efficiency. We thank you for working on this, and apologize for any snags encountered -- the tools are very cutting edge, and doing very advanced code and data transformations, so it is wise to expect a few snags along the way. We are here to help -- please contact us if you are encountering unexpected issues.
 
-To help deploy this toolchain, we have provided in this repository a **Docker** container setup that includes **PyTorch**, **GraphIt**, and tools for estimating the energy consumption of programs implemented using this infrastructure. Here
-are the links to the component of this infrastructure so that you may get more information on them:
+To help deploy this toolchain, we have provided in this repository a [Docker][] container setup that includes [PyTorch][], [GraphIt][], and tools for estimating the energy consumption of programs implemented using this infrastructure.
 
-[*tvm*: https://tvm.ai ](https://tvm.ai)
-
-[*pytorch*: https://pytorch.org ](https://pytorch.org)
-
-[*graphit*: http://graphit-lang.org](http://graphit-lang.org)
-
-[*docker*: https://www.docker.com](https://www.docker.com)
+[tvm]: https://tvm.ai
+[pytorch]: https://pytorch.org
+[graphit]: http://graphit-lang.org
+[docker]: https://www.docker.com
 
 
 Running the Container
