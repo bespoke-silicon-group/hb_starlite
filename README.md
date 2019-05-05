@@ -118,10 +118,12 @@ This tool estimates the energy consumption of TVM programs (and any other progra
 #### Usage
 
 The tool is located in the `perf-energy-tool` folder.
+You can use the tool to estimate the energy of any program you've written, including models executing in TVM.
+Just run `energy_calc.py` and specify the program you want to profile:
 
-	Usage options:
-	1) If testing ordinary executable:
-	             python3 energy_calc.py <executable>
-	2) If testing Python program:
-	             python3 energy_calc.py python3 <program.py>
+    $ python3 energy_calc.py <command>
+
+For example, if the thing you're profiling is itself a Python program (e.g., a TVM-based model), do something like this:
+
+     $ python3 energy_calc.py python3 <program.py>
 
