@@ -42,11 +42,11 @@ For other (standard) containers for TVM (including GPU support), see
 Development
 -----------
 
-Inside the container, you can use [PyTorch][], [TVM][], and [GraphIt][].
+Inside the container, you can use **PyTorch**, **TVM**, and **GraphIt**.
 
 ### PyTorch
 
-For machine learning and dense linear algebra development, we recommend you use [PyTorch][].
+For machine learning and dense linear algebra development, we recommend you use **PyTorch**.
 To get started, begin with [the "60-minute blitz" PyTorch tutorial](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html).
 Then, depending on the task you want to accomplish, explore [the full set of PyTorch tutorials](https://pytorch.org/tutorials/) to find examples that are closest to your domain.
 
