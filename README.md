@@ -14,10 +14,13 @@ on how changes to their code affect energy efficiency.
 To help deploy this toolchain, we have provided in this repository a [Docker][] container setup that includes [PyTorch][], [GraphIt][], and tools for estimating the energy consumption of programs implemented using this infrastructure. Here
 are the links to the component of this infrastructure so that you may get more information on them:
 
-[tvm]: https://tvm.ai
-[pytorch]: https://pytorch.org
-[graphit]: http://graphit-lang.org
-[docker]: https://www.docker.com
+[*tvm*: https://tvm.ai ](https://tvm.ai)
+
+[*pytorch*: https://pytorch.org ](https://pytorch.org)
+
+[*graphit*: http://graphit-lang.org](http://graphit-lang.org)
+
+[*docker*: https://www.docker.com](https://www.docker.com)
 
 
 Running the Container
