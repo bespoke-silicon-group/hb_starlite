@@ -65,6 +65,15 @@ Begin by following the [Getting Started guide](http://graphit-lang.org/getting-s
 (You can skip the initial setup instructions; the compiler is already installed in the container for you.)
 Then, check out the [language manual](http://graphit-lang.org/language) for more details.
 
+
+Energy Profiling
+-----------
+
+There are two different mechanisms for profiling energy efficiency; one is most suited for profiling GraphIt programs, and one is most suited for profiling PyTorch programs.
+
+Profiling GraphIt programs
+-----------
+
 ### HBPintool
 
 The tool only supports being run from the source root of `hbpintool` (`/hbpintool/` in this image).
@@ -107,7 +116,7 @@ The tool is located in the `perf-energy-tool` folder.
 	             python3 energy_calc.py python3 <program.py>
 
 
-Profiling
+Profiling PyTorch programs
 ---------
 
 We recommend that testers use the PyTorch frontend for development.
