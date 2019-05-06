@@ -91,6 +91,7 @@ def calculate_energy_cpu(perf_data):
 
 def calculate_energy_hb(perf_data):
     energy = 0
+    perf_data['instructions'] -= perf_data['r530110'] + perf_data['r531010'] * 2 + perf_data['r532010'] + perf_data['r534010'] * 4 + perf_data['r538010']
     # due to general instructions
     energy += perf_data['instructions'] * HB_energy_per_inst
     # due to floating point instructions
