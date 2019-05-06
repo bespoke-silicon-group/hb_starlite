@@ -81,6 +81,10 @@ From the `hbpintool` directory run these commands to profile your GraphIt progra
 
 You should find the output in a file called `hbpintool.out`
 
+#### Compile with -O3
+
+You'll get more accurate measurements if aggresive compiler optimizations are turned on.
+
 #### Preventing Compiler Inlining 
 
 For accuracy the `hbpintool` relies on the GraphIt generated `edgeset_apply` function being defined in the program executable.
