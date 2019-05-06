@@ -43,11 +43,10 @@ RUN git clone https://github.com/GraphIt-DSL/graphit && \
 	make -j 16
 
 # HBPintool
-COPY install/hbpintool.tar.gz /install/hbpintool.tar.gz
-RUN tar zxf /install/hbpintool.tar.gz && \
-	cd /hbpintool && \
-	./configure && \
-	make
+COPY install/hbpintool-release.tar.gz /install/hbpintool-release.tar.gz
+RUN tar zxf /install/hbpintool-release.tar.gz && \
+	cd /hbpintool-release && \
+	./configure 
 
 RUN apt-get install -y python less
 
