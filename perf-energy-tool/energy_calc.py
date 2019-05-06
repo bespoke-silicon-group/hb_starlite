@@ -25,12 +25,18 @@ stat_types = [
 
 # constants for energy estimation
 # energy units are in PJ 
-Xeon_IPC = 3
-cacheline_size_bits = 64 * 8
-energy_per_inst = 1000
-energy_per_fp = 190
-energy_per_cache_access = 100
+Xeon_cacheline_size_bits = 64 * 8
+Xeon_energy_per_inst = 1000
+Xeon_energy_per_fp = 190
+Xeon_energy_per_cache_access = 100
 DDR4_energy_per_bit = 60
+
+HB_cacheline_size_bits = 64 * 8
+HB_energy_per_inst = 9.4
+HB_energy_per_fp_16 = 0.72
+HB_energy_per_fp_32 = 1.6
+HB_energy_per_cache_access = 100
+HBM2_energy_per_bit = 3.9
 
 
 # prints usage
@@ -72,14 +78,32 @@ def execute_perf(exec_cmd):
 def calculate_energy_cpu(perf_data):
     energy = 0
     # due to general instructions
-    energy += perf_data['instructions'] * energy_per_inst
+    energy += perf_data['instructions'] * Xeon_energy_per_inst
     # due to floating point instructions
     float_insts = perf_data['r530110'] + perf_data['r531010'] * 2 + perf_data['r532010'] + perf_data['r534010'] * 4 + perf_data['r538010']
-    energy += float_insts * energy_per_fp
+    energy += float_insts * Xeon_energy_per_fp
     # due to cache accesses
-    energy += perf_data['cache-references'] * energy_per_cache_access
+    energy += perf_data['cache-references'] * Xeon_energy_per_cache_access
     # due to DDR4 accesses
-    energy += perf_data['cache-misses'] * DDR4_energy_per_bit * cacheline_size_bits
+    energy += perf_data['cache-misses'] * DDR4_energy_per_bit * Xeon_cacheline_size_bits
+    return energy
+
+
+def calculate_energy_hb(perf_data):
+    energy = 0
+    # due to general instructions
+    energy += perf_data['instructions'] * HB_energy_per_inst
+    # due to floating point instructions
+    float_energy = perf_data['r530110'] * HB_energy_per_fp_32 * 80 / 32 + \
+                  perf_data['r531010'] * HB_energy_per_fp_32 * 1.6 + \
+                  perf_data['r532010'] * HB_energy_per_fp_16 + \
+                  perf_data['r534010'] * 4 * HB_energy_per_fp_32 + \
+                  perf_data['r538010'] * HB_energy_per_fp_32
+    energy += float_energy
+    # due to cache accesses
+    energy += perf_data['cache-references'] * HB_energy_per_cache_access
+    # due to DDR4 accesses
+    energy += perf_data['cache-misses'] * HBM2_energy_per_bit * HB_cacheline_size_bits
     return energy
 
 
@@ -92,4 +116,5 @@ if __name__ == "__main__":
         print_usage()
         sys.exit()
     perf_data = execute_perf(sys.argv[1:])
-    print("%s microjoules" % str(calculate_energy_cpu(perf_data) / 10**6))
+    #print("CPU: %s microjoules" % str(calculate_energy_cpu(perf_data) / 10**6))
+    print("HammerBlade energy consumption: %s microjoules" % str(calculate_energy_hb(perf_data) / 10**6))
