@@ -50,6 +50,9 @@ RUN tar zxf /install/hbpintool-release.tar.gz && \
 
 RUN apt-get install -y python less
 
+# Test script.
+COPY test.sh /test.sh
+
 ENTRYPOINT sudo echo 0 > /proc/sys/kernel/yama/ptrace_scope && /bin/bash
 
 # Environment variables

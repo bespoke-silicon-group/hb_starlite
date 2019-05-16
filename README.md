@@ -30,6 +30,10 @@ You might need root permissions based on your local Docker setup (so try this wi
 [hub]: https://hub.docker.com
 [dockerfile]: https://github.com/Mutinifni/hb_starlite/blob/master/docker/Dockerfile
 
+Inside the container, type this command to make sure things are working:
+
+    $ /test.sh
+
 You can also see the [Dockerfile][] source for details on how this is set up.
 For other (standard) containers for TVM (including GPU support), see
 [the official Dockerfiles](https://github.com/dmlc/tvm/tree/master/docker), and [related instructions](https://docs.tvm.ai/install/docker.html).
