@@ -1,0 +1,18 @@
+build image:
+  stage: build
+
+  image: docker:stable
+
+  services:
+    - docker:dind
+
+  script:
+    - docker login -u gitlab-ci-token -p "$CI_BUILD_TOKEN" $CI_REGISTRY
+    - docker build docker --pull -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+
+  tags:
+    - docker
+
+  only:
+    - master
