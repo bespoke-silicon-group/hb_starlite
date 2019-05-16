@@ -21,21 +21,20 @@ To help deploy this toolchain, we have provided in this repository a [Docker][] 
 Running the Container
 ---------------------
 
-To run the container, use our launch script to pull it from [Docker Hub][hub]:
+To run the container, use our launch script to pull it from [the SDH Docker registry][reg]:
 
-    $ ./docker/bash.sh mutinifni/sdh-tvm-pytorch:latest
+    $ ./docker/bash.sh registry.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite
 
 You might need root permissions based on your local Docker setup (so try this with `sudo` if it doesn't work without it).
 The container requires a standard x86 server and does not require a GPU.
 
-[hub]: https://hub.docker.com
-[dockerfile]: https://github.com/Mutinifni/hb_starlite/blob/master/docker/Dockerfile
+[reg]: https://gitlab.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite/container_registry
 
 Inside the container, type this command to make sure things are working:
 
     $ /test.sh
 
-You can also see the [Dockerfile][] source for details on how this is set up.
+You can also see the `Dockerfile` source for details on how this is set up.
 For other (standard) containers for TVM (including GPU support), see
 [the official Dockerfiles](https://github.com/dmlc/tvm/tree/master/docker), and [related instructions](https://docs.tvm.ai/install/docker.html).
 
