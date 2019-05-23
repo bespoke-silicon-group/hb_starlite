@@ -21,7 +21,11 @@ To help deploy this toolchain, we have provided in this repository a [Docker][] 
 Running the Container
 ---------------------
 
-To run the container, use our launch script to pull it from [the SDH Docker registry][reg]:
+To run the container, first log into [the SDH Docker registry][reg] using your SDH GitLab credentials:
+
+    $ docker login https://registry.sdh.cloud/v2/
+
+Then, use our launch script to pull the container and start it up:
 
     $ ./docker/bash.sh registry.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite
 
