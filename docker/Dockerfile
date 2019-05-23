@@ -7,9 +7,10 @@ RUN apt-get update --fix-missing
 COPY install/ubuntu_install_core.sh /install/ubuntu_install_core.sh
 RUN bash /install/ubuntu_install_core.sh
 
-# Python: basic dependencies
+# Python dependencies.
 RUN apt-get update && apt-get install -y python3-dev python3-pip vim
-RUN pip3 install numpy nose-timer cython decorator scipy
+COPY install/requirements.txt /install/requirements.txt
+RUN pip3 install -r /install/requirements.txt
 
 # LLVM
 RUN echo deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main \
@@ -17,22 +18,12 @@ RUN echo deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main \
      wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
      apt-get update && apt-get install -y --force-yes llvm-6.0
 
-# Jupyter notebook.
-RUN pip3 install matplotlib Image Pillow jupyter[notebook]
-
-# Deep learning frameworks
-RUN pip3 install mxnet tensorflow keras
-
-# Pytorch 1.0
-RUN pip3 install torch torchvision
-
 # Build TVM
 COPY install/install_tvm_cpu.sh /install/install_tvm_cpu.sh
 RUN bash /install/install_tvm_cpu.sh
 
-
 # GraphIt dependencies
-RUN apt-get install -y libncurses-dev 
+RUN apt-get install -y libncurses-dev
 # GraphIt
 RUN git clone https://github.com/GraphIt-DSL/graphit && \
 	cd graphit && \
@@ -46,12 +37,13 @@ RUN git clone https://github.com/GraphIt-DSL/graphit && \
 COPY install/hbpintool-release.tar.gz /install/hbpintool-release.tar.gz
 RUN tar zxf /install/hbpintool-release.tar.gz && \
 	cd /hbpintool-release && \
-	./configure 
+	./configure
 
 RUN apt-get install -y python less
 
 # Test script.
 COPY test.sh /test.sh
+RUN chmod a+x /test.sh
 
 ENTRYPOINT sudo echo 0 > /proc/sys/kernel/yama/ptrace_scope && /bin/bash
 
