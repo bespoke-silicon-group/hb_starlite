@@ -5,7 +5,7 @@ decorator==4.4.0
 scipy==1.2.1
 matplotlib==3.0.3
 Pillow==6.0.0
-jupyter[notebook]==1.0.0
+jupyter==1.0.0
 mxnet==1.4.1
 tensorflow==1.13.1
 Keras==2.2.4
