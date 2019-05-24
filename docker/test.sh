@@ -4,9 +4,9 @@
 # working.
 
 # Try importing our Python infrastructure.
-python -c 'import tvm'
-python -c 'import torch'
+python3 -c 'import tvm'
+python3 -c 'import torch'
 
 # Make sure the GraphIt compiler works.
-cd graphit
+cd /graphit
 ./build/bin/graphitc -h
