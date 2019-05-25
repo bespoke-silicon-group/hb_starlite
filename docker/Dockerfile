@@ -27,7 +27,7 @@ RUN apt-get install -y libncurses-dev
 # GraphIt
 RUN git clone https://github.com/GraphIt-DSL/graphit && \
 	cd graphit && \
-	git checkout 4758c2e7e027e0f1e14c7cc66a3dfaf5f8877ccf && \
+	git checkout 6f60a231c362b4d2c1211d403702130a63dc8faf && \
 	mkdir -p build && \
 	cd build && \
 	cmake .. && \
