@@ -32,6 +32,7 @@ RUN git clone https://github.com/GraphIt-DSL/graphit && \
 	cd build && \
 	cmake .. && \
 	make -j 16
+ENV GRAPHIT_BUILD_DIRECTORY "/graphit/build"
 
 # HBPintool
 COPY install/hbpintool-release.tar.gz /install/hbpintool-release.tar.gz
@@ -48,4 +49,4 @@ RUN chmod a+x /test.sh
 ENTRYPOINT sudo echo 0 > /proc/sys/kernel/yama/ptrace_scope && /bin/bash
 
 # Environment variables
-ENV PYTHONPATH "/usr/tvm/python:/usr/tvm/topi/python:/usr/tvm/nnvm/python/:/usr/tvm/vta/python"
+ENV PYTHONPATH "/usr/tvm/python:/usr/tvm/topi/python:/usr/tvm/nnvm/python/:/usr/tvm/vta/python:/graphit/src/python"

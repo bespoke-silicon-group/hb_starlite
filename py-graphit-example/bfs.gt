@@ -1,8 +1,6 @@
 element Vertex end
 element Edge end
 
-const edges : edgeset{Edge}(Vertex,Vertex) = load (argv[1]);
-const vertices : vertexset{Vertex} = edges.getVertices();
 const parent : vector{Vertex}(int) = -1;
 
 
@@ -18,12 +16,12 @@ func reset(v: Vertex)
     parent[v] = -1;
 end
 
-func main()
+export func do_bfs(edges: Edgeset{Edge}(Vertex,Vertex), start_vertex: int)
+    const vertices : vertexset{Vertex} = edges.getVertices();
     for trail in 0:10
 	startTimer();
         vertices.apply(reset);
     	var frontier : vertexset{Vertex} = new vertexset{Vertex}(0);
-	var start_vertex : int = atoi(argv[2]);
     	frontier.addVertex(start_vertex);
     	parent[start_vertex] = start_vertex;
 

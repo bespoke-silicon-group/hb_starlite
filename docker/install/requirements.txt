@@ -11,3 +11,4 @@ tensorflow==1.13.1
 Keras==2.2.4
 torch==1.1.0
 torchvision==0.2.2.post3
+pybind11==2.2.4
