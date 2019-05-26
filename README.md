@@ -91,15 +91,18 @@ Specifically, follow these steps:
    However, `edges` and `vertices` remain as global `const` declarations.
 
 3. In your Python program, add `import graphit`. Then, use `graphit.compile_and_load` to import your GraphIt code as a module.
-   In [our example](https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/bfs.py), we call it `bfs_module`:
+   In [our example][gpyex], we call it `bfs_module`:
 
        bfs_module = graphit.compile_and_load("bfs.gt")
 
    The argument to `compile_and_load` is the filename of your GraphIt source code.
 
-4. Call `<module>.<function>()` to invoke your GraphIt function.
+4. Call `<module>.<function>(...)` to invoke your GraphIt function.
+   In [our example][gpyex], for instance, we call `bfs_module.do_bfs(edges, start_vertex)`.
+   To supply `edgeset` and `vector{Vertex}` arguments to GraphIt functions, use [`scipy.sparse.csr_matrix`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html) and [NumPy array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html) values, respectively.
 
 [graphit-py]: http://graphit-lang.org/language#python-binding
+[gpyex]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/bfs.py
 
 
 Energy Profiling
