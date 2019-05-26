@@ -64,10 +64,38 @@ See the extensive list of [tutorials that come with TVM][tvm-tut].
 
 ### GraphIt
 
-To develop graph processing kernels, use **TVM**.
+To develop graph processing kernels, use **GraphIt**.
 Begin by following the [Getting Started guide](http://graphit-lang.org/getting-started), which walks you through the implementation of the PageRank-Delta algorithm.
 (You can skip the initial setup instructions; the compiler is already installed in the container for you.)
 Then, check out the [language manual](http://graphit-lang.org/language) for more details.
+
+### Interop
+
+To build applications that use *both* tensor-oriented compute and graph processing, use Python.
+PyTorch (and TVM) use Python natively as their interface, and [GraphIt has Python bindings][graphit-py].
+
+To use GraphIt from Python, you can imitate [our example project](https://github.com/bespoke-silicon-group/hb_starlite/tree/master/py-graphit-example), which shows how to interact with a BFS kernel from a Python program.
+Specifically, follow these steps:
+
+1. Change your GraphIt program by renaming your `main` function to something descriptive, and mark it using [the `export` keyword](http://graphit-lang.org/language#graphit-language-extensions).
+
+2. Replace any globals that come from `argv` or are read from files to instead be arguments to this function.
+   For example, [our BFS program](https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/bfs.gt) defines a function like this:
+
+       export func do_bfs(edges: Edgeset{Edge}(Vertex,Vertex), start_vertex: int)
+
+   whereas [the "standalone" version](https://github.com/GraphIt-DSL/graphit/blob/6f60a231c362b4d2c1211d403702130a63dc8faf/apps/bfs.gt) gets `edges` from a file (by calling `load`) and `start_vertex` from `argv[2]`.
+
+3. In your Python program, add `import graphit`. Then, use `graphit.compile_and_load` to import your GraphIt code as a module.
+   In [our example](https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/bfs.py), we call it `bfs_module`:
+
+       bfs_module = graphit.compile_and_load("bfs.gt")
+
+   The argument to `compile_and_load` is the filename of your GraphIt source code.
+
+4. Call `<module>.<function>()` to invoke your GraphIt function.
+
+[graphit-py]: http://graphit-lang.org/language#python-binding
 
 
 Energy Profiling
