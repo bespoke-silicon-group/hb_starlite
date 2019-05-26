@@ -33,6 +33,8 @@ RUN git clone https://github.com/GraphIt-DSL/graphit && \
 	cmake .. && \
 	make -j 16
 ENV GRAPHIT_BUILD_DIRECTORY "/graphit/build"
+ENV GRAPHIT_SOURCE_DIRECTORY "/graphit"
+ENV CXX_COMPILER "c++"
 
 # HBPintool
 COPY install/hbpintool-release.tar.gz /install/hbpintool-release.tar.gz
