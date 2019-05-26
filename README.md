@@ -102,8 +102,11 @@ Specifically, follow these steps:
    To supply `edgeset` and `vector{Vertex}` arguments to GraphIt functions, use [`scipy.sparse.csr_matrix`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html) and [NumPy array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html) values, respectively.
    You can construct a `csr_matrix` manually or [load one from an `.npz` file](https://docs.scipy.org/doc/scipy-1.0.0/reference/generated/scipy.sparse.load_npz.html), for example.
 
+5. If you need to, you can convert the output from a GraphIt function into a [PyTorch tensor][tensor]. Just use `torch.tensor(vals)`.
+
 [graphit-py]: http://graphit-lang.org/language#python-binding
 [gpyex]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/sssp.py
+[tensor]: https://pytorch.org/docs/stable/torch.html#torch.tensor
 
 
 Energy Profiling
