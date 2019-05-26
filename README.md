@@ -100,6 +100,7 @@ Specifically, follow these steps:
 4. Call `<module>.<function>(...)` to invoke your GraphIt function.
    In [our example][gpyex], for instance, we call `sssp_module.do_sssp(edges, start_vertex)`.
    To supply `edgeset` and `vector{Vertex}` arguments to GraphIt functions, use [`scipy.sparse.csr_matrix`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html) and [NumPy array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html) values, respectively.
+   You can construct a `csr_matrix` manually or [load one from an `.npz` file](https://docs.scipy.org/doc/scipy-1.0.0/reference/generated/scipy.sparse.load_npz.html), for example.
 
 [graphit-py]: http://graphit-lang.org/language#python-binding
 [gpyex]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/sssp.py
