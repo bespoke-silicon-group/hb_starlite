@@ -124,7 +124,7 @@ Follow these steps:
 
 #### Perf Energy Tool
 
-This tool estimates the energy consumption of TVM programs (and any other program as well) for the Intel E7-8894 v4 CPU. The tool must be run on this CPU to obtain appropriate estimates. It depends on the `perf` utility to read the CPU performance counters.
+This tool estimates the energy consumption of TVM programs (and any other program as well) for the Intel E7-8894 v4 CPU. The tool assumes it is using this CPU. It depends on the `perf` utility to read the CPU performance counters.
 
 #### Usage
 
