@@ -74,35 +74,35 @@ Then, check out the [language manual](http://graphit-lang.org/language) for more
 To build applications that use *both* tensor-oriented compute and graph processing, use Python.
 PyTorch (and TVM) use Python natively as their interface, and [GraphIt has Python bindings][graphit-py].
 
-To use GraphIt from Python, you can imitate [our example project](https://github.com/bespoke-silicon-group/hb_starlite/tree/master/py-graphit-example), which shows how to interact with a BFS kernel from a Python program.
+To use GraphIt from Python, you can imitate [our example project](https://github.com/bespoke-silicon-group/hb_starlite/tree/master/py-graphit-example), which shows how to interact with a single-source shortest path (SSSP) kernel from a Python program.
 Specifically, follow these steps:
 
 1. Change your GraphIt program by renaming your `main` function to something descriptive, and mark it using [the `export` keyword](http://graphit-lang.org/language#graphit-language-extensions).
 
 2. Replace any globals that come from `argv` or are read from files to instead come from arguments to this function.
-   For example, [our BFS program](https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/bfs.gt) defines a function like this:
+   For example, [our SSSP program](https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/sssp.gt) defines a function like this:
 
-       export func do_bfs(input_edges : edgeset{Edge}(Vertex,Vertex), start_vertex : int) {
+       export func do_sssp(input_edges : edgeset{Edge}(Vertex,Vertex, int)) -> output : vector{Vertex}(int)
            edges = input_edges;
            vertices = edges.getVertices();
            ...
 
-   whereas [the "standalone" version](https://github.com/GraphIt-DSL/graphit/blob/6f60a231c362b4d2c1211d403702130a63dc8faf/apps/bfs.gt) gets `edges` from a file (by calling `load`) and `start_vertex` from `argv[2]`.
+   whereas [the "standalone" version](https://github.com/GraphIt-DSL/graphit/blob/6f60a231c362b4d2c1211d403702130a63dc8faf/apps/sssp.gt) gets `edges` from a file (by calling `load`).
    However, `edges` and `vertices` remain as global `const` declarations.
 
 3. In your Python program, add `import graphit`. Then, use `graphit.compile_and_load` to import your GraphIt code as a module.
-   In [our example][gpyex], we call it `bfs_module`:
+   In [our example][gpyex], we call it `sssp_module`:
 
-       bfs_module = graphit.compile_and_load("bfs.gt")
+       sssp_module = graphit.compile_and_load("sssp.gt")
 
    The argument to `compile_and_load` is the filename of your GraphIt source code.
 
 4. Call `<module>.<function>(...)` to invoke your GraphIt function.
-   In [our example][gpyex], for instance, we call `bfs_module.do_bfs(edges, start_vertex)`.
+   In [our example][gpyex], for instance, we call `sssp_module.do_sssp(edges, start_vertex)`.
    To supply `edgeset` and `vector{Vertex}` arguments to GraphIt functions, use [`scipy.sparse.csr_matrix`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html) and [NumPy array](https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html) values, respectively.
 
 [graphit-py]: http://graphit-lang.org/language#python-binding
-[gpyex]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/bfs.py
+[gpyex]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/sssp.py
 
 
 Energy Profiling
