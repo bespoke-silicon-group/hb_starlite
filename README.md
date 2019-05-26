@@ -82,7 +82,7 @@ Specifically, follow these steps:
 2. Replace any globals that come from `argv` or are read from files to instead be arguments to this function.
    For example, [our BFS program](https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/bfs.gt) defines a function like this:
 
-       export func do_bfs(edges: Edgeset{Edge}(Vertex,Vertex), start_vertex: int)
+       export func do_bfs(edges: Edgeset, start_vertex: int)
 
    whereas [the "standalone" version](https://github.com/GraphIt-DSL/graphit/blob/6f60a231c362b4d2c1211d403702130a63dc8faf/apps/bfs.gt) gets `edges` from a file (by calling `load`) and `start_vertex` from `argv[2]`.
 

@@ -16,8 +16,8 @@ func reset(v: Vertex)
     parent[v] = -1;
 end
 
-export func do_bfs(edges: Edgeset{Edge}(Vertex,Vertex), start_vertex: int)
-    const vertices : vertexset{Vertex} = edges.getVertices();
+export func do_bfs(edges: Edgeset, start_vertex: int)
+    var vertices : vertexset{Vertex} = edges.getVertices();
     for trail in 0:10
 	startTimer();
         vertices.apply(reset);
