@@ -42,7 +42,7 @@ RUN tar zxf /install/hbpintool-release.tar.gz && \
 	cd /hbpintool-release && \
 	./configure
 
-RUN apt-get install -y python less
+RUN apt-get install -y python less curl
 
 # Test script.
 COPY test.sh /test.sh
