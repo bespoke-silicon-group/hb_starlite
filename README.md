@@ -43,6 +43,22 @@ For other (standard) containers for TVM (including GPU support), see
 [the official Dockerfiles](https://github.com/dmlc/tvm/tree/master/docker), and [related instructions](https://docs.tvm.ai/install/docker.html).
 
 
+Training
+--------
+
+During the training phase, please learn how to use [PyTorch][], for tensor processing and machine learning, and [GraphIt][], for graph processing, including the Python interface to GraphIt.
+Please also try running our efficiency estimation tools.
+We describe all of these and more in detail below.
+Your goal during the training phase is carefully read over everything in this document and to follow the linked tutorial resources.
+
+By the end of the training phase, you should be able to do these things:
+
+* *PyTorch:* Build, train, and evaluate an image classifier for the CIFAR-10 dataset. Export the trained network as an ONNX model and execute it in TVM. Measure its estimated efficiency when processing a batch of image.
+* *GraphIt:* Implement a classic undergraduate-level graph processing algorithm, such as the [Floyd–Warshall shortest path algorithm][fw], in GraphIt. Invoke the graph processing kernel from a Python program that loads and supplies compressed sparse row (CSR) data. Measure the kernel's estimated efficiency when processing an example graph.
+
+[fw]: https://en.wikipedia.org/wiki/Floyd–Warshall_algorithm
+
+
 Development
 -----------
 
