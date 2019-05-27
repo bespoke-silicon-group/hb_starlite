@@ -46,17 +46,17 @@ For other (standard) containers for TVM (including GPU support), see
 Development
 -----------
 
-Inside the container, you can use **PyTorch**, **TVM**, and **GraphIt**.
+Inside the container, you can use [PyTorch][], [TVM][], and [GraphIt][].
 
 ### PyTorch
 
-For machine learning and dense linear algebra development, we recommend you use **PyTorch**.
+For machine learning and dense linear algebra development, we recommend you use [PyTorch][].
 To get started, begin with [the "60-minute blitz" PyTorch tutorial](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html).
 Then, depending on the task you want to accomplish, explore [the full set of PyTorch tutorials](https://pytorch.org/tutorials/) to find examples that are closest to your domain.
 
 ### TVM
 
-You can also opt to use **TVM** directly, especially via its [MXNet][] frontend.
+You can also opt to use [TVM][] directly, especially via its [MXNet][] frontend.
 See the extensive list of [tutorials that come with TVM][tvm-tut].
 
 [tvm-tut]: https://docs.tvm.ai/tutorials/
@@ -64,7 +64,7 @@ See the extensive list of [tutorials that come with TVM][tvm-tut].
 
 ### GraphIt
 
-To develop graph processing kernels, use **GraphIt**.
+To develop graph processing kernels, use [GraphIt][].
 Begin by following the [Getting Started guide](http://graphit-lang.org/getting-started), which walks you through the implementation of the PageRank-Delta algorithm.
 (You can skip the initial setup instructions; the compiler is already installed in the container for you.)
 Then, check out the [language manual](http://graphit-lang.org/language) for more details.
@@ -129,7 +129,7 @@ You should find the output in a file called `hbpintool.out`
 
 #### Compile with -O3
 
-You'll get more accurate measurements if aggresive compiler optimizations are turned on.
+You'll get more accurate measurements if aggressive compiler optimizations are turned on.
 
 #### Preventing Compiler Inlining 
 
