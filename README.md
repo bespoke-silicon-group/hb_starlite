@@ -102,8 +102,7 @@ Specifically, follow these steps:
 2. Replace any globals that come from `argv` or are read from files to instead come from arguments to this function.
    For example, [our SSSP program](https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/sssp.gt) defines a function like this:
 
-        export func do_sssp(input_edges : edgeset{Edge}(Vertex,Vertex,int),
-source_vertex : int) -> output : vector{Vertex}(int)
+        export func do_sssp(input_edges : edgeset{Edge}(Vertex,Vertex,int), source_vertex : int) -> output : vector{Vertex}(int)
            edges = input_edges;
            vertices = edges.getVertices();
            ...
