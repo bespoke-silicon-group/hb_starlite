@@ -1,6 +1,7 @@
 from scipy.sparse import csr_matrix
 from scipy.sparse import csgraph
-import graphit
+import graphit_util
+import os
 
 # You can represent a graph as an *adjacency matrix*. The entry at
 # (i, j) gives the edge weight for the edge from vertex i to vertex j.
@@ -12,6 +13,9 @@ MY_GRAPH = [
     [2, 0, 0],
     [1, 0, 0],
 ]
+
+# The path to our GraphIt source file, relative to this Python file.
+SSSP_SOURCE = os.path.join(os.path.dirname(__file__), 'sssp.gt')
 
 
 def sssp_scipy(graph, source):
@@ -35,7 +39,7 @@ def sssp_graphit(graph, source):
     """
     # Compile a GraphIt source file and load it so we can call its
     # exported function.
-    sssp_module = graphit.compile_and_load("sssp.gt")
+    sssp_module = graphit_util.load_cached(SSSP_SOURCE)
 
     # In GraphIt, `edgeset`s define graphs. Use SciPy's `csr_matrix` to
     # create these values, which we'll pass into a GraphIt function.
