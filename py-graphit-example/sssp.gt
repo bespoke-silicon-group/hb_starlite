@@ -19,15 +19,16 @@ func printSP(v : Vertex)
     print SP[v];
 end
 
-export func do_sssp(input_edges : edgeset{Edge}(Vertex,Vertex, int)) -> output : vector{Vertex}(int)
+export func do_sssp(input_edges : edgeset{Edge}(Vertex,Vertex, int),
+source_vertex : int) -> output : vector{Vertex}(int)
     edges = input_edges;
     vertices = edges.getVertices();
     SP = new vector{Vertex}(int)();
     vertices.apply(initSP);
     var n : int = edges.getVertices(); %this is a hack to get the number of nodes for now
     var frontier : vertexset{Vertex} = new vertexset{Vertex}(0);
-    frontier.addVertex(0); %add source vertex
-    SP[0] = 0;
+    frontier.addVertex(source_vertex); %add source vertex
+    SP[source_vertex] = 0;
     var rounds : int = 0;
     while (frontier.getVertexSetSize() != 0)
         #s1# var output : vertexset{Vertex} = edges.from(frontier).applyModified(updateEdge,SP);

@@ -14,7 +14,7 @@ graph = csr_matrix((
 sssp_module = graphit.compile_and_load("sssp.gt")
 
 # Invoke the `do_sssp` GraphIt function from the loaded module.
-distances = sssp_module.do_sssp(graph)
+distances = sssp_module.do_sssp(graph, 0)
 
 # A vector{Vertex} value is represented as a NumPy array. Use
 # `torch.tensor(...)` to convert it to a tensor.

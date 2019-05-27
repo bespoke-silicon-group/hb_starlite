@@ -102,12 +102,13 @@ Specifically, follow these steps:
 2. Replace any globals that come from `argv` or are read from files to instead come from arguments to this function.
    For example, [our SSSP program](https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/sssp.gt) defines a function like this:
 
-       export func do_sssp(input_edges : edgeset{Edge}(Vertex,Vertex, int)) -> output : vector{Vertex}(int)
+        export func do_sssp(input_edges : edgeset{Edge}(Vertex,Vertex,int),
+source_vertex : int) -> output : vector{Vertex}(int)
            edges = input_edges;
            vertices = edges.getVertices();
            ...
 
-   whereas [the "standalone" version](https://github.com/GraphIt-DSL/graphit/blob/6f60a231c362b4d2c1211d403702130a63dc8faf/apps/sssp.gt) gets `edges` from a file (by calling `load`).
+   whereas [the "standalone" version](https://github.com/GraphIt-DSL/graphit/blob/6f60a231c362b4d2c1211d403702130a63dc8faf/apps/sssp.gt) gets `edges` from a file (by calling `load`) and `source_vertex` comes from `argv`.
    However, `edges` and `vertices` remain as global `const` declarations.
 
 3. In your Python program, add `import graphit`. Then, use `graphit.compile_and_load` to import your GraphIt code as a module.
