@@ -125,9 +125,14 @@ source_vertex : int) -> output : vector{Vertex}(int)
 
 5. If you need to, you can convert the output from a GraphIt function into a [PyTorch tensor][tensor]. Just use `torch.tensor(vals)`.
 
+We have also provided some utilities for interacting with GraphIt in [`graphit_util.py`][gtutil].
+The function `load_cached` there works like `graphit.compile_and_load`, but it will skip compilation if the GraphIt source file has not changed.
+This can make development and testing faster: compiling takes a few seconds, even for short programs.
+
 [graphit-py]: http://graphit-lang.org/language#python-binding
 [gpyex]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/sssp.py
 [tensor]: https://pytorch.org/docs/stable/torch.html#torch.tensor
+[gtutil]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/graphit_util.py
 
 
 Energy Profiling
