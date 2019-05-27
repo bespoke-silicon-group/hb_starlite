@@ -51,7 +51,7 @@ Please also try running our efficiency estimation tools.
 We describe all of these and more in detail below.
 Your goal during the training phase is carefully read over everything in this document and to follow the linked tutorial resources.
 
-By the end of the training phase, you should be able to do these things:
+By the end of the training phase, you should be able to do these things using our container infrastructure:
 
 * *PyTorch:* Build, train, and evaluate an image classifier for the CIFAR-10 dataset. Export the trained network as an ONNX model and execute it in TVM. Measure its estimated efficiency when processing a batch of image.
 * *GraphIt:* Implement a classic undergraduate-level graph processing algorithm, such as the [Floyd–Warshall shortest path algorithm][fw], in GraphIt. Invoke the graph processing kernel from a Python program that loads and supplies compressed sparse row (CSR) data. Measure the kernel's estimated efficiency when processing an example graph.
@@ -66,9 +66,13 @@ Inside the container, you can use [PyTorch][], [TVM][], and [GraphIt][].
 
 ### PyTorch
 
-For machine learning and dense linear algebra development, we recommend you use [PyTorch][].
-To get started, begin with [the "60-minute blitz" PyTorch tutorial](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html).
-Then, depending on the task you want to accomplish, explore [the full set of PyTorch tutorials](https://pytorch.org/tutorials/) to find examples that are closest to your domain.
+For machine learning and dense linear algebra development, use [PyTorch][].
+During training, begin with [the "60-minute blitz" PyTorch tutorial](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html), which shows you how to build and train an image classifier for the CIFAR-10 dataset.
+If you like watching screencasts, try [this PyTorch image classifier tutorial][pytorch-video]. But please be sure to follow the "60-minute blitz" tutorial too to make sure you don't miss anyting.
+
+Also, explore [the full set of PyTorch tutorials](https://pytorch.org/tutorials/). During development, you may find examples there that are close to the domain you're working in.
+
+[pytorch-video]: https://youtu.be/XriwHXfLi6M
 
 ### TVM
 
