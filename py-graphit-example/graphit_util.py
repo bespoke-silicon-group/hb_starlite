@@ -6,6 +6,12 @@ import platform
 
 
 def _compile(graphit_source_file, module_name, module_file):
+    """Compile a GraphIt source file to a dynamically linked Python
+    library with the given name.
+
+    This is a parameterized version of `graphit.compile_and_load` with
+    the module loading component omitted.
+    """
     base, _ = os.path.splitext(module_file)
     module_filename_cpp = '{}.cpp'.format(base)
     module_filename_object = '{}.o'.format(base)
@@ -17,9 +23,14 @@ def _compile(graphit_source_file, module_name, module_file):
         shell=True,
     )
 
+    # Get the right pybind11 library header directory, depending on how
+    # it was installed.
+    pybind_incdir = graphit.pybind11.get_include(False)
+    if not os.path.exists(pybind_incdir):
+        pybind_incdir = graphit.pybind11.get_include(True)
+
     compile_command = (
-        graphit.CXX_COMPILER + " -I" +
-        graphit.pybind11.get_include(True) +
+        graphit.CXX_COMPILER + " -I" + pybind_incdir +
         " $(python3-config --includes) -c -I " +
         graphit.GRAPHIT_SOURCE_DIRECTORY + "/src/runtime_lib/ " +
         "-std=c++11 -DGEN_PYBIND_WRAPPERS -flto "
