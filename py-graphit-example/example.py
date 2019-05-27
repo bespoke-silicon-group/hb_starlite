@@ -1,7 +1,9 @@
 from scipy.sparse import csr_matrix
 from scipy.sparse import csgraph
+from numpy import inf
 import graphit_util
 import os
+import sys
 
 # You can represent a graph as an *adjacency matrix*. The entry at
 # (i, j) gives the edge weight for the edge from vertex i to vertex j.
@@ -22,14 +24,9 @@ def sssp_scipy(graph, source):
     """Use SciPy's built-in shortest path algorithm to compute a vector
     of shortest paths from the source matrix, given as an index.
     """
-    # The SciPy graph algorithms, like GraphIt functions, want graphs
-    # represented as SciPy's `csr_matrix` values. Use `csr_matrix` to
-    # convert an adjacency matrix to the right format.
-    mat = csr_matrix(graph)
-
     # Compute the all-paths distance matrix and pull out the row we're
     # interested in.
-    dists = csgraph.shortest_path(mat)
+    dists = csgraph.shortest_path(graph)
     return dists[source]
 
 
@@ -41,22 +38,39 @@ def sssp_graphit(graph, source):
     # exported function.
     sssp_module = graphit_util.load_cached(SSSP_SOURCE)
 
-    # In GraphIt, `edgeset`s define graphs. Use SciPy's `csr_matrix` to
-    # create these values, which we'll pass into a GraphIt function.
-    mat = csr_matrix(graph)
-
-    # Invoke the `do_sssp` GraphIt function from the loaded module.
-    return sssp_module.do_sssp(mat, 1)
+    # Invoke the `do_sssp` GraphIt function from the loaded module. A
+    # `csr_matrix` value, which represents a graph, gets translated to an
+    # `edgelist` within the GraphIt code.
+    return sssp_module.do_sssp(graph, source)
 
 
-def compare():
+def compare(graph, source=2):
     # Run both shortest-path algorithms.
-    dists_a = sssp_scipy(MY_GRAPH, 1)
-    dists_b = sssp_graphit(MY_GRAPH, 1)
+    dists_a = sssp_scipy(graph, source)
+    dists_b = sssp_graphit(graph, source)
 
     # Check that the results agree.
-    assert all(a == b for a, b in zip(dists_a, dists_b))
+    assert all(a == b or a == inf and b == 2147483647
+               for a, b in zip(dists_a, dists_b))
+
+
+def main():
+    # Use our built-in graph, or load one from a file.
+    if len(sys.argv) > 1:
+        filename = sys.argv[1]
+        with open(filename) as f:
+            graph = graphit_util.read_adjacency_tsv(f)
+    else:
+        graph = csr_matrix(MY_GRAPH)
+
+    # Get the source matrix index.
+    if len(sys.argv) > 2:
+        source = int(sys.argv[2])
+    else:
+        source = 0
+
+    compare(graph, source)
 
 
 if __name__ == '__main__':
-    compare()
+    main()

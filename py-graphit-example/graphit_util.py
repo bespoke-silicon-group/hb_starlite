@@ -3,6 +3,7 @@ import os
 import importlib
 import subprocess
 import platform
+from scipy.sparse import csr_matrix
 
 
 def _compile(graphit_source_file, module_name, module_file):
@@ -88,3 +89,23 @@ def load_cached(graphit_filename, lib_filename=None):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def read_adjacency_tsv(file):
+    """Read a graph from a file-like object in "adjacency TSV" format,
+    returning a `csr_matrix` object.
+
+    In this format (popularized by the MIT GraphChallenge datasets),
+    each row has three numbers, separated by tabs: the vertex indices
+    and the edge weight.
+    """
+    srcs = []
+    dests = []
+    values = []
+    for line in file:
+        line = line.strip()
+        i, j, v = [int(n) for n in line.split('\t')]
+        srcs.append(i)
+        dests.append(j)
+        values.append(v)
+    return csr_matrix((values, (srcs, dests)))
