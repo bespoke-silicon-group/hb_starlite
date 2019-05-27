@@ -21,8 +21,8 @@ def _compile(graphit_source_file, module_name, module_file):
         graphit.CXX_COMPILER + " -I" +
         graphit.pybind11.get_include(True) +
         " $(python3-config --includes) -c -I " +
-        graphit.GRAPHIT_SOURCE_DIRECTORY +
-        "/src/runtime_lib/ -std=c++11 -DGEN_PYBIND_WRAPPERS -flto "
+        graphit.GRAPHIT_SOURCE_DIRECTORY + "/src/runtime_lib/ " +
+        "-std=c++11 -DGEN_PYBIND_WRAPPERS -flto "
         "-fno-fat-lto-objects -fPIC -fvisibility=hidden "
     )
 
@@ -34,7 +34,7 @@ def _compile(graphit_source_file, module_name, module_file):
 
     cmd = (
         graphit.CXX_COMPILER + " -fPIC -shared -o " + module_file +
-        " " + module_filename_object + " -flto"
+        " " + module_filename_object + " -flto "
     )
 
     if platform.system() == "Darwin":
@@ -69,7 +69,7 @@ def load_cached(graphit_filename, lib_filename=None):
     # Compare the mtimes of the source and compiled version. Recompile
     # if necessary.
     if not os.path.exists(lib_filename) or \
-       os.stat(graphit_filename).mtime > os.stat(lib_filename):
+       os.stat(graphit_filename).st_mtime > os.stat(lib_filename).st_mtime:
         _compile(graphit_filename, mod_name, lib_filename)
 
     # (Re)load the module.
