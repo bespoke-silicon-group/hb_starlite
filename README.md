@@ -126,13 +126,24 @@ source_vertex : int) -> output : vector{Vertex}(int)
 5. If you need to, you can convert the output from a GraphIt function into a [PyTorch tensor][tensor]. Just use `torch.tensor(vals)`.
 
 We have also provided some utilities for interacting with GraphIt in [`graphit_util.py`][gtutil].
-The function `load_cached` there works like `graphit.compile_and_load`, but it will skip compilation if the GraphIt source file has not changed.
-This can make development and testing faster: compiling takes a few seconds, even for short programs.
+You might want to use these functions:
+
+* The function `load_cached` there works like `graphit.compile_and_load`, but it will skip compilation if the GraphIt source file has not changed.
+  This can make development and testing faster: compiling takes a few seconds, even for short programs.
+* A `read_adjacency_tsv` function parses "adjacency TSV" files, of the sort made popular by the [MIT GraphChallenge][grdata] datasets.
+
+To see these utilities in action, see [our more complete `example.py`][examplepy].
+You can run this example on a non-trivial input graph:
+
+    $ curl -LO 'https://graphchallenge.s3.amazonaws.com/snap/ca-GrQc/ca-GrQc_adj.tsv'
+    $ python3 example.py ./ca-GrQc_adj.tsv 3
 
 [graphit-py]: http://graphit-lang.org/language#python-binding
 [gpyex]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/sssp.py
 [tensor]: https://pytorch.org/docs/stable/torch.html#torch.tensor
 [gtutil]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/graphit_util.py
+[grdata]: https://graphchallenge.mit.edu/data-sets
+[examplepy]: https://github.com/bespoke-silicon-group/hb_starlite/blob/master/py-graphit-example/example.py
 
 
 Energy Profiling
