@@ -25,13 +25,13 @@ source_vertex : int) -> output : vector{Vertex}(int)
     vertices = edges.getVertices();
     SP = new vector{Vertex}(int)();
     vertices.apply(initSP);
-    var n : int = edges.getVertices(); %this is a hack to get the number of nodes for now
+    var n : int = edges.getVertices();
     var frontier : vertexset{Vertex} = new vertexset{Vertex}(0);
-    frontier.addVertex(source_vertex); %add source vertex
+    frontier.addVertex(source_vertex);
     SP[source_vertex] = 0;
     var rounds : int = 0;
     while (frontier.getVertexSetSize() != 0)
-        #s1# var output : vertexset{Vertex} = edges.from(frontier).applyModified(updateEdge,SP);
+        var output : vertexset{Vertex} = edges.from(frontier).applyModified(updateEdge,SP);
         delete frontier;
         frontier = output;
 	    rounds = rounds + 1;
@@ -41,7 +41,6 @@ source_vertex : int) -> output : vector{Vertex}(int)
 	    end
     end
     delete frontier;
-    #s2# vertices.apply(printSP);
     %print rounds;
     output = SP;
 end
