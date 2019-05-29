@@ -87,7 +87,13 @@ See the extensive list of [tutorials that come with TVM][tvm-tut].
 To develop graph processing kernels, use [GraphIt][].
 Begin by following the [Getting Started guide](http://graphit-lang.org/getting-started), which walks you through the implementation of the PageRank-Delta algorithm.
 (You can skip the initial setup instructions; the compiler is already installed in the container for you.)
-Then, check out the [language manual](http://graphit-lang.org/language) for more details.
+We recommend watching [our GraphIt tutorial screencast][graphit-video] for an introduction to the language.
+
+Once you've gotten the basics down, check out the [language manual](http://graphit-lang.org/language) for more details.
+The included [example applications][apps] are also useful as reference material.
+
+[graphit-video]: https://youtu.be/at4mCe9g8Fs
+[apps]: https://github.com/GraphIt-DSL/graphit/tree/master/apps
 
 ### Interop
 
