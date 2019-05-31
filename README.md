@@ -44,6 +44,12 @@ Then, use our launch script to pull the container and start it up:
 
 You might need root permissions based on your local Docker setup (so try this with `sudo` if it doesn't work without it).
 
+When you're inside the container, the default directory is `/workspace`, which is a mount of the `hb_starlite` directory on the host.
+So you'll see everything in this repository, including this README file, when you type `ls`.
+
+One additional note: please type `python3`, not just `python`, to use Python.
+All our tools are installed for Python 3.x, and `python` on this system is Python 2.x.
+
 [reg]: https://gitlab.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite/container_registry
 
 
@@ -76,6 +82,8 @@ During training, begin with [the "60-minute blitz" PyTorch tutorial](https://pyt
 If you like watching screencasts, try [this PyTorch image classifier tutorial][pytorch-video]. But please be sure to follow the "60-minute blitz" tutorial too to make sure you don't miss anyting.
 
 Also, explore [the full set of PyTorch tutorials](https://pytorch.org/tutorials/). During development, you may find examples there that are close to the domain you're working in.
+
+When following these tutorials, remember to invoke Python by typing `python3`, not just `python`.
 
 [pytorch-video]: https://youtu.be/XriwHXfLi6M
 
