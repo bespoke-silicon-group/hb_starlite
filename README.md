@@ -18,29 +18,33 @@ To help deploy this toolchain, we have provided in this repository a [Docker][] 
 [docker]: https://www.docker.com
 
 
+System Requirements
+-------------------
+
+This infrastructure requires only [Docker][].
+The container requires a standard x86 server and does not require a GPU.
+
+If you want to check that things are working inside the container, type `/test.sh`.
+This should print some version information but no errors if everything's in order.
+
+
 Running the Container
 ---------------------
 
-To run the container, first log into [the SDH Docker registry][reg] using your SDH GitLab credentials:
+First, clone this repository and `cd` into it:
 
-    $ docker login https://registry.sdh.cloud/v2/
+    $ git clone https://gitlab.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite.git
+    $ cd hb_starlite
 
+Next, you'll need to be sure you're logged into [the SDH Docker registry][reg] using your SDH GitLab credentials.
+Do that with `docker login https://registry.sdh.cloud/v2/` if you haven't already.
 Then, use our launch script to pull the container and start it up:
 
     $ ./docker/bash.sh registry.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite
 
 You might need root permissions based on your local Docker setup (so try this with `sudo` if it doesn't work without it).
-The container requires a standard x86 server and does not require a GPU.
 
 [reg]: https://gitlab.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite/container_registry
-
-Inside the container, type this command to make sure things are working:
-
-    $ /test.sh
-
-You can also see the `Dockerfile` source for details on how this is set up.
-For other (standard) containers for TVM (including GPU support), see
-[the official Dockerfiles](https://github.com/dmlc/tvm/tree/master/docker), and [related instructions](https://docs.tvm.ai/install/docker.html).
 
 
 Training
