@@ -184,9 +184,11 @@ To run `hbpintool`, you must be in its directory at `/hbpintool-release` inside 
 
 1. `cd /hbpintool-release`
 2. `source SOURCE_THIS`
-3. `./hbpintool /path/to/your/graphit/program [your-graphit-program-arguments]`
+3. `./hbpintool /your/compiled/graphit/program [arguments]`
+4. Find the output in a file called `hbpintool.out`.
 
-You should find the output in a file called `hbpintool.out`
+In the third step, provide the name of your compiled executable and any arguments it requires.
+In other words, if you use `/dir/myapp 1 2` to run the program normally, use `./hbpintool /dir/myapp 1 2` to run it with profiling.
 
 Here are some recommendations for getting the best results out of the tool:
 
