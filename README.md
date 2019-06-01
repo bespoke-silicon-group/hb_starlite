@@ -48,6 +48,7 @@ When you're inside the container, the default directory is `/workspace`, which i
 So you'll see everything in this repository, including this README file, when you type `ls`.
 
 One additional note: please type `python3`, not just `python`, to use Python.
+And if you need to install packages, use `pip3` instead of just `pip`.
 All our tools are installed for Python 3.x, and `python` on this system is Python 2.x.
 
 [reg]: https://gitlab.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite/container_registry
