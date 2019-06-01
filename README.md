@@ -180,9 +180,9 @@ If you need to profile a program that uses both, you can either (a) profile the 
 
 ### hbpintool: Profiling GraphIt Programs
 
-To run `hbpintool`, you must be in its directory at `/hbpintool` inside the container. Follow these steps:
+To run `hbpintool`, you must be in its directory at `/hbpintool-release` inside the container. Follow these steps:
 
-1. `cd /hbpintool`
+1. `cd /hbpintool-release`
 2. `source SOURCE_THIS`
 3. `./hbpintool /path/to/your/graphit/program [your-graphit-program-arguments]`
 
