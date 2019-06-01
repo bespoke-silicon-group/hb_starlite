@@ -219,3 +219,7 @@ For example, if the thing you're profiling is itself a Python program (e.g., a T
 
      $ python3 energy_calc.py python3 <program.py>
 
+Note that if the provided `perf` version does not work on your machine, you can try one of two steps:
+
+- [Install `perf`](https://askubuntu.com/a/578618) directly on your test container (recommended).
+- Rebuild your test container to update perf by running `docker build -t <container-name> .` in the `docker` folder, and using this image for testing.
