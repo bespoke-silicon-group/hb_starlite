@@ -78,7 +78,8 @@ Inside the container, you can use [PyTorch][], [TVM][], and [GraphIt][].
 ### PyTorch
 
 For machine learning and dense linear algebra development, use [PyTorch][].
-During training, begin with [the "60-minute blitz" PyTorch tutorial](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html), which shows you how to build and train an image classifier for the CIFAR-10 dataset.
+During training, begin with [the "60-minute blitz" PyTorch tutorial](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html), which shows you how to build and train an image classifier.
+During the course of the tutorial, you'll download and train on the popular [CIFAR-10][cifar] dataset.
 If you like watching screencasts, try [this PyTorch image classifier tutorial][pytorch-video]. But please be sure to follow the "60-minute blitz" tutorial too to make sure you don't miss anyting.
 
 Also, explore [the full set of PyTorch tutorials](https://pytorch.org/tutorials/). During development, you may find examples there that are close to the domain you're working in.
@@ -86,6 +87,7 @@ Also, explore [the full set of PyTorch tutorials](https://pytorch.org/tutorials/
 When following these tutorials, remember to invoke Python by typing `python3`, not just `python`.
 
 [pytorch-video]: https://youtu.be/XriwHXfLi6M
+[cifar]: https://www.cs.toronto.edu/~kriz/cifar.html
 
 ### TVM
 
