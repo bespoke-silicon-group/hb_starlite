@@ -26,7 +26,7 @@ stat_types = [
 # constants for energy estimation
 # energy units are in PJ 
 Xeon_cacheline_size_bits = 64 * 8
-Xeon_energy_per_inst = 1000
+Xeon_energy_per_inst = 1011
 Xeon_energy_per_fp = 190
 Xeon_energy_per_cache_access = 100
 DDR4_energy_per_bit = 60
@@ -75,8 +75,9 @@ def execute_perf(exec_cmd):
 
 
 # processes performance stats to estimate energy in picojoules
-def calculate_energy_cpu(perf_data):
+def calculate_gops_per_w_cpu(perf_data):
     energy = 0
+    instrs = perf_data['instructions']
     # due to general instructions
     energy += perf_data['instructions'] * Xeon_energy_per_inst
     # due to floating point instructions
@@ -86,11 +87,13 @@ def calculate_energy_cpu(perf_data):
     energy += perf_data['cache-references'] * Xeon_energy_per_cache_access
     # due to DDR4 accesses
     energy += perf_data['cache-misses'] * DDR4_energy_per_bit * Xeon_cacheline_size_bits
-    return energy
+    # 1000 factor due to pico and giga unit conversions
+    return (1000 * instrs) / energy
 
 
-def calculate_energy_hb(perf_data):
+def calculate_gops_per_w_hb(perf_data):
     energy = 0
+    instrs = perf_data['instructions']
     perf_data['instructions'] -= perf_data['r530110'] + perf_data['r531010'] * 2 + perf_data['r532010'] + perf_data['r534010'] * 4 + perf_data['r538010']
     # due to general instructions
     energy += perf_data['instructions'] * HB_energy_per_inst
@@ -105,7 +108,8 @@ def calculate_energy_hb(perf_data):
     energy += perf_data['cache-references'] * HB_energy_per_cache_access
     # due to DDR4 accesses
     energy += perf_data['cache-misses'] * HBM2_energy_per_bit * HB_cacheline_size_bits
-    return energy
+    # 1000 factor due to pico and giga unit conversions
+    return (1000 * instrs) / energy
 
 
 if __name__ == "__main__":
@@ -117,5 +121,5 @@ if __name__ == "__main__":
         print_usage()
         sys.exit()
     perf_data = execute_perf(sys.argv[1:])
-    #print("CPU: %s microjoules" % str(calculate_energy_cpu(perf_data) / 10**6))
-    print("HammerBlade energy consumption: %s microjoules" % str(calculate_energy_hb(perf_data) / 10**6))
+    #print("CPU: %s GOPS per Watt" % str(calculate_gops_per_w_cpu(perf_data)))
+    print("HammerBlade energy consumption: %s GOPS per Watt" % str(calculate_gops_per_w_hb(perf_data)))
