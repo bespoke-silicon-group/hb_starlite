@@ -36,7 +36,7 @@ First, clone this repository and `cd` into it:
     $ git clone https://gitlab.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite.git
     $ cd hb_starlite
 
-Next, you'll need to be sure you're logged into [the SDH Docker registry][reg] using your SDH GitLab credentials.
+Next, you'll need to be sure you're logged into [the project's Docker registry][reg] using your provided GitLab credentials.
 Do that with `docker login https://registry.sdh.cloud/v2/` if you haven't already.
 Then, use our launch script to pull the container and start it up:
 
