@@ -49,6 +49,7 @@ RUN apt-get install -y linux-tools-common linux-tools-generic linux-tools-`uname
 COPY test.sh /test.sh
 RUN chmod a+x /test.sh
 
+ENV MALLOC_CHECK_ 1 # temporary work around for GraphIt runtime bug
 ENTRYPOINT sudo echo 0 > /proc/sys/kernel/yama/ptrace_scope && /bin/bash
 
 # Environment variables
