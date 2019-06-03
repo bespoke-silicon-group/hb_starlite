@@ -111,7 +111,7 @@ The included [example applications][apps] are also useful as reference material.
 We recommend that you *do not use [GraphIt's scheduling language][gtsched]*.
 Sticking with the default schedule should be fine for this programmability evaluation, so please just focus on expressing the algorithm.
 
-[graphit-video]: https://youtu.be/at4mCe9g8Fs
+[graphit-video]: http://homes.cs.washington.edu/~eafurst/graphit_tutorial.html
 [apps]: https://github.com/GraphIt-DSL/graphit/tree/master/apps
 [gtsched]: http://graphit-lang.org/language#scheduling-language
 
