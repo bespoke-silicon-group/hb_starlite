@@ -42,11 +42,14 @@ Then, use our launch script to pull the container and start it up:
 
     $ ./docker/bash.sh registry.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite
 
-Or, if you don't have access to the private Docker registry, you can use a publicly hosted version of the Docker image instead:
+Or, if you don't have access to the private GitLab and Docker registry, you can use a publicly hosted version of the repository and Docker image instead:
 
+    $ git clone https://github.com/bespoke-silicon-group/hb_starlite.git
+    $ cd hb_starlite
     $ ./docker/bash.sh samps/hb_starlite
 
-You might need root permissions based on your local Docker setup (so try this with `sudo` if it doesn't work without it).
+In either case, there's a chance you will need root permissions to run the Docker container (depending on your system).
+If you encounter permissions problems, try `sudo` before the `./docker/bash.sh` command.
 
 When you're inside the container, the default directory is `/workspace`, which is a mount of the `hb_starlite` directory on the host.
 So you'll see everything in this repository, including this README file, when you type `ls`.
