@@ -42,6 +42,10 @@ Then, use our launch script to pull the container and start it up:
 
     $ ./docker/bash.sh registry.sdh.cloud/2019-06-submissions/washingtonsdhph1/hb_starlite
 
+Or, if you don't have access to the private Docker registry, you can use a publicly hosted version of the Docker image instead:
+
+    $ ./docker/bash.sh samps/hb_starlite
+
 You might need root permissions based on your local Docker setup (so try this with `sudo` if it doesn't work without it).
 
 When you're inside the container, the default directory is `/workspace`, which is a mount of the `hb_starlite` directory on the host.
