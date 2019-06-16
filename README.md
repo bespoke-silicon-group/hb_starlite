@@ -98,6 +98,26 @@ Here are some tips for using this module:
 
 [torch.sparse]: https://pytorch.org/docs/stable/sparse.html
 
+##### Sparse Matrix Operations
+
+The most common thing you'll need to do with a sparse matrix is multiply it by a dense matrix.
+To do this, use the [`torch.sparse.mm`][sparsemm] method, which is like the more standard `torch.mm` but it works with sparse tensors.
+Specifically, use:
+
+    import torch.sparse
+    out = torch.sparse.mm(sparse_matrix, dense_matrix)
+
+to produce `out` as a dense matrix.
+
+You can also use standard math operators on sparse tensors.
+For example, `a + b` can add two sparse matrices or a sparse and a dense matrix, and `a * b` does *pointwise* multiplication.
+The matrix multiply operator, as in `a @ b`, works like the `mm` function above: it implements sparse/dense matrix multiplication.
+
+To convert a sparse tensor to a standard, dense PyTorch tensor, use the `.to_dense()` method.
+When debugging, it is often useful to convert a matrix to dense format for printing.
+
+[sparsemm]: https://pytorch.org/docs/stable/sparse.html#torch.sparse.mm
+
 ##### Convert Between SciPy and PyTorch Sparse Tensors
 
 If you have data as a [scipy.sparse][] matrix, here are some functions you can use to convert between that and the torch.sparse representation:
