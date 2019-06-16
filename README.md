@@ -90,6 +90,45 @@ When following these tutorials, remember to invoke Python by typing `python3`, n
 [pytorch-video]: https://youtu.be/XriwHXfLi6M
 [cifar]: https://www.cs.toronto.edu/~kriz/cifar.html
 
+#### Sparse Tensors
+
+For dealing with sparse tensor data, please use the [torch.sparse][] module.
+It's marked as experimental, but it's good for most common uses of sparse matrix data.
+Here are some tips for using this module:
+
+[torch.sparse]: https://pytorch.org/docs/stable/sparse.html
+
+##### Convert Between SciPy and PyTorch Sparse Tensors
+
+If you have data as a [scipy.sparse][] matrix, here are some functions you can use to convert between that and the torch.sparse representation:
+
+```py
+import torch.sparse
+import scipy.sparse
+import numpy
+
+
+def sparse_scipy2torch(matrix):
+    coo_matrix = matrix.tocoo()
+    return torch.sparse.FloatTensor(
+        torch.LongTensor(numpy.vstack((coo_matrix.row, coo_matrix.col))),
+        torch.FloatTensor(coo_matrix.data),
+        torch.Size(coo_matrix.shape),
+    )
+
+
+def sparse_torch2scipy(tensor):
+    coalesced = tensor.coalesce()
+    values = coalesced.values()
+    rows, cols = coalesced.indices()
+    return scipy.sparse.coo_matrix((
+        values.numpy(),
+        (rows.numpy(), cols.numpy()),
+    ))
+```
+
+[scipy.sparse]: https://docs.scipy.org/doc/scipy/reference/sparse.html
+
 ### TVM
 
 You can also opt to use [TVM][] directly, especially via its [MXNet][] frontend.
