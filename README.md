@@ -113,10 +113,41 @@ You can also use standard math operators on sparse tensors.
 For example, `a + b` can add two sparse matrices or a sparse and a dense matrix, and `a * b` does *pointwise* multiplication.
 The matrix multiply operator, as in `a @ b`, works like the `mm` function above: it implements sparse/dense matrix multiplication.
 
+
 To convert a sparse tensor to a standard, dense PyTorch tensor, use the `.to_dense()` method.
 When debugging, it is often useful to convert a matrix to dense format for printing.
 
 [sparsemm]: https://pytorch.org/docs/stable/sparse.html#torch.sparse.mm
+[pytorch_sparse]: https://github.com/rusty1s/pytorch_sparse
+
+##### Sparse/Sparse Matrix Multiplication
+
+The built-in [torch.sparse][] library only supports matrix multiplication between sparse and dense matrices.
+If you need sparse/sparse matrix multiplication, please use the companion [pytorch_sparse][] library.
+To install it, type:
+
+    $ pip3 install --user torch-scatter torch-sparse
+
+Then, in your code, use this function to multiply sparse matrices:
+
+```py
+import torch_sparse
+
+def sparse_sparse_mm(a, b):
+    assert a.shape[1] == b.shape[0], "dimension mismatch for multiply"
+    a_coalesced = a.coalesce()
+    b_coalesced = b.coalesce()
+    c_indices, c_values = torch_sparse.spspmm(
+        a_coalesced.indices(), a_coalesced.values(),
+        b_coalesced.indices(), b_coalesced.values(),
+        a.shape[0], a.shape[1], b.shape[1],
+    )
+    return torch.sparse.FloatTensor(
+        c_indices,
+        c_values,
+        torch.Size([a.shape[0], b.shape[1]]),
+    )
+```
 
 ##### Convert Between SciPy and PyTorch Sparse Tensors
 
