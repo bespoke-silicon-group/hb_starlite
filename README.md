@@ -128,56 +128,17 @@ To install it, type:
 
     $ pip3 install --user torch-scatter torch-sparse
 
-Then, in your code, use this function to multiply sparse matrices:
+Then, in your code, use the [`sparse_sparse_mm`][spmm-function] function from our `torch-sparse-example.py` file.
 
-```py
-import torch_sparse
-
-def sparse_sparse_mm(a, b):
-    assert a.shape[1] == b.shape[0], "dimension mismatch for multiply"
-    a_coalesced = a.coalesce()
-    b_coalesced = b.coalesce()
-    c_indices, c_values = torch_sparse.spspmm(
-        a_coalesced.indices(), a_coalesced.values(),
-        b_coalesced.indices(), b_coalesced.values(),
-        a.shape[0], a.shape[1], b.shape[1],
-    )
-    return torch.sparse.FloatTensor(
-        c_indices,
-        c_values,
-        torch.Size([a.shape[0], b.shape[1]]),
-    )
-```
+[spmm-function]: https://github.com/bespoke-silicon-group/hb_starlite/blob/32fcbe3bca025884e39f4a79fcb1cb7e3a8bf586/torch-sparse-example.py#L37-L53
 
 ##### Convert Between SciPy and PyTorch Sparse Tensors
 
-If you have data as a [scipy.sparse][] matrix, here are some functions you can use to convert between that and the torch.sparse representation:
+If you have data as a [scipy.sparse][] matrix, we have provided some utilities to convert between that and the torch.sparse representation.
+See the [`sparse_scipy2torch` and `sparse_torch2scipy`][convert-funcs] functions in the accompanying `torch-sparse-example.py` file.
+You can copy these functions into your code if you need to.
 
-```py
-import torch.sparse
-import scipy.sparse
-import numpy
-
-
-def sparse_scipy2torch(matrix):
-    coo_matrix = matrix.tocoo()
-    return torch.sparse.FloatTensor(
-        torch.LongTensor(numpy.vstack((coo_matrix.row, coo_matrix.col))),
-        torch.FloatTensor(coo_matrix.data),
-        torch.Size(coo_matrix.shape),
-    )
-
-
-def sparse_torch2scipy(tensor):
-    coalesced = tensor.coalesce()
-    values = coalesced.values()
-    rows, cols = coalesced.indices()
-    return scipy.sparse.coo_matrix((
-        values.numpy(),
-        (rows.numpy(), cols.numpy()),
-    ))
-```
-
+[convert-funcs]: https://github.com/bespoke-silicon-group/hb_starlite/blob/32fcbe3bca025884e39f4a79fcb1cb7e3a8bf586/torch-sparse-example.py#L10-L34
 [scipy.sparse]: https://docs.scipy.org/doc/scipy/reference/sparse.html
 
 ### TVM
