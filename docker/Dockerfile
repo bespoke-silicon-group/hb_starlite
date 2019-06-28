@@ -54,3 +54,6 @@ ENTRYPOINT sudo echo 0 > /proc/sys/kernel/yama/ptrace_scope && /bin/bash
 
 # Environment variables
 ENV PYTHONPATH "/usr/tvm/python:/usr/tvm/topi/python:/usr/tvm/nnvm/python/:/usr/tvm/vta/python:/graphit/src/python"
+
+# Add performance estimation tool.
+COPY perf-energy-tool /perf-energy-tool

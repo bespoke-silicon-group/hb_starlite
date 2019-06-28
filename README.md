@@ -238,7 +238,7 @@ Follow these steps:
 [onnx]: https://onnx.ai
 
 The profiling tool uses `perf` and performance counters to estimate energy costs.
-The tool is located in the `perf-energy-tool` folder.
+The tool is located in the `perf-energy-tool` directory.
 You can use the tool to estimate the energy of any program you've written, including models executing in TVM.
 Run `energy_calc.py` and specify the program you want to profile:
 
