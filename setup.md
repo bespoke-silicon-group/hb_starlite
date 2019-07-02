@@ -13,6 +13,8 @@ The container requires a standard x86 server and does not require a GPU.
 If you want to check that things are working inside the container, type `/test.sh`.
 This should print some version information but no errors if everything's in order.
 
+[docker]: https://www.docker.com
+
 
 Running the Container
 ---------------------
