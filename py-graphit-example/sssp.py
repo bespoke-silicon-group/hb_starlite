@@ -11,7 +11,7 @@ graph = csr_matrix((
 ))
 
 # Compile a GraphIt source file and load it so we can call its function.
-sssp_module = graphit.compile_and_load("sssp.gt")
+sssp_module = graphit.compile_and_load("/workspace/py-graphit-example/sssp.gt")
 
 # Invoke the `do_sssp` GraphIt function from the loaded module.
 distances = sssp_module.do_sssp(graph, 0)
