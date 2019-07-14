@@ -241,16 +241,6 @@ In summary, you can invoke your program like this:
 
 ### energy_calc: Profiling PyTorch & TVM Programs
 
-We recommend that testers use the PyTorch frontend for development.
-Then, to profile an implementation you've created, we recommend you use TVM.
-To do so, you will need to export the PyTorch model as [ONNX][] and import into TVM.
-Follow these steps:
-
-1. Export the model. Use [torch.onnx.export](https://pytorch.org/docs/master/onnx.html) to save your model to an ONNX file.
-2. Import the model into TVM and compile. See [the TVM tutorial about importing ONNX models](https://docs.tvm.ai/tutorials/frontend/from_onnx.html#sphx-glr-tutorials-frontend-from-onnx-py).
-
-[onnx]: https://onnx.ai
-
 The profiling tool uses `perf` and performance counters to estimate energy costs.
 The tool is located in the `perf-energy-tool` directory.
 You can use the tool to estimate the energy of any program you've written, including models executing in TVM.
@@ -266,3 +256,18 @@ Note that if the provided `perf` version does not work on your machine, you can 
 
 - [Install `perf`](https://askubuntu.com/a/578618) directly on your test container (recommended).
 - Rebuild your test container to update perf by running `docker build -t <container-name> .` in the `docker` folder, and using this image for testing.
+
+#### Using TVM via ONNX
+
+We recommend that testers use the PyTorch frontend for development.
+Then, to profile an implementation you've created, you may be able to use TVM to improve performance.
+To do so, you will need to export the PyTorch model as [ONNX][] and import into TVM.
+Follow these steps:
+
+1. Export the model. Use [torch.onnx.export](https://pytorch.org/docs/master/onnx.html) to save your model to an ONNX file.
+2. Import the model into TVM and compile. See [the TVM tutorial about importing ONNX models](https://docs.tvm.ai/tutorials/frontend/from_onnx.html#sphx-glr-tutorials-frontend-from-onnx-py).
+
+Not all features in PyTorch are supported in the current version of ONNX, so it's possible the conversion might fail.
+In that case, you can use `energy_calc` to profile the PyTorch program directly.
+
+[onnx]: https://onnx.ai
