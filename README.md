@@ -254,7 +254,7 @@ For example, if the thing you're profiling is itself a Python program (e.g., a T
 
 #### Setting Up
 
-Before using `perf-energy-tool`, you will need to ensure that `perf` itself is working, which may require a manual step.
+Before using `energy_calc`, you will need to ensure that `perf` itself is working, which may require a manual step.
 Try running `perf --version` command all by itself; if it just prints the version, you're all set.
 But it may instead give you a message recommending a specific `linux-tools` package to install.
 
@@ -276,6 +276,6 @@ Follow these steps:
 2. Import the model into TVM and compile. See [the TVM tutorial about importing ONNX models](https://docs.tvm.ai/tutorials/frontend/from_onnx.html#sphx-glr-tutorials-frontend-from-onnx-py).
 
 Not all features in PyTorch are supported in the current version of ONNX, so it's possible the conversion might fail.
-In that case, you can use `perf-energy-tool` to profile the PyTorch program directly.
+In that case, you can use `energy_calc` to profile the PyTorch program directly.
 
 [onnx]: https://onnx.ai
