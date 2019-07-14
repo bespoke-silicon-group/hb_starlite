@@ -241,7 +241,7 @@ In summary, you can invoke your program like this:
 
 ### energy_calc: Profiling PyTorch & TVM Programs
 
-The profiling tool uses `perf` and performance counters to estimate energy costs.
+The profiling tool uses [the `perf` tool][perf] and performance counters to estimate energy costs.
 The tool is located in the `perf-energy-tool` directory.
 You can use the tool to estimate the energy of any program you've written, including models executing in TVM.
 Run `energy_calc.py` and specify the program you want to profile:
@@ -252,10 +252,18 @@ For example, if the thing you're profiling is itself a Python program (e.g., a T
 
      $ python3 energy_calc.py python3 <program.py>
 
-Note that if the provided `perf` version does not work on your machine, you can try one of two steps:
+#### Setting Up
 
-- [Install `perf`](https://askubuntu.com/a/578618) directly on your test container (recommended).
-- Rebuild your test container to update perf by running `docker build -t <container-name> .` in the `docker` folder, and using this image for testing.
+Before using `perf-energy-tool`, you will need to ensure that `perf` itself is working, which may require a manual step.
+Try running `perf --version` command all by itself; if it just prints the version, you're all set.
+But it may instead give you a message recommending a specific `linux-tools` package to install.
+
+For example, you may need to run this to get a working `perf`:
+
+    $ apt update
+    $ apt install linux-tools-4.15.0-1043-aws
+
+[perf]: https://perf.wiki.kernel.org/
 
 #### Using TVM via ONNX
 
@@ -268,6 +276,6 @@ Follow these steps:
 2. Import the model into TVM and compile. See [the TVM tutorial about importing ONNX models](https://docs.tvm.ai/tutorials/frontend/from_onnx.html#sphx-glr-tutorials-frontend-from-onnx-py).
 
 Not all features in PyTorch are supported in the current version of ONNX, so it's possible the conversion might fail.
-In that case, you can use `energy_calc` to profile the PyTorch program directly.
+In that case, you can use `perf-energy-tool` to profile the PyTorch program directly.
 
 [onnx]: https://onnx.ai
