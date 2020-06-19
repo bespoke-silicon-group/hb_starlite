@@ -9,7 +9,6 @@ jupyter==1.0.0
 mxnet==1.4.1
 tensorflow==2.2.0
 Keras==2.2.4
-torch==1.1.0
-torchvision==0.2.2.post3
+torchvision
 pybind11==2.2.4
 onnx==1.5.0
