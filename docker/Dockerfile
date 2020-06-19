@@ -21,10 +21,6 @@ RUN echo deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main \
      wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
      apt-get update && apt-get install -y --force-yes llvm-6.0
 
-# Build TVM
-COPY install/install_tvm_cpu.sh /install/install_tvm_cpu.sh
-RUN bash /install/install_tvm_cpu.sh
-
 # GraphIt dependencies
 RUN apt-get install -y libncurses-dev
 # GraphIt
@@ -56,7 +52,7 @@ ENV MALLOC_CHECK_ 1 # temporary work around for GraphIt runtime bug
 ENTRYPOINT sudo echo 0 > /proc/sys/kernel/yama/ptrace_scope && /bin/bash
 
 # Environment variables
-ENV PYTHONPATH "/usr/tvm/python:/usr/tvm/topi/python:/usr/tvm/nnvm/python/:/usr/tvm/vta/python:/graphit/src/python"
+ENV PYTHONPATH "/graphit/src/python"
 
 # Add performance estimation tool.
 COPY perf-energy-tool /perf-energy-tool
