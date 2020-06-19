@@ -26,4 +26,4 @@ apt-get update && DEBIAN_FRONTEND=noninteractive \
         git make libgtest-dev cmake wget unzip libtinfo-dev libz-dev \
         libcurl4-openssl-dev libopenblas-dev g++ sudo
 
-cd /usr/src/gtest && cmake CMakeLists.txt && make && cp *.a /usr/lib
+cd /usr/src/gtest && cmake CMakeLists.txt && make && cp lib/*.a /usr/lib
