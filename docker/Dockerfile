@@ -1,6 +1,6 @@
 # Minimum docker image for demo purposes
 # prebuilt-image: tvmai/demo-cpu
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 RUN apt-get update --fix-missing
 
