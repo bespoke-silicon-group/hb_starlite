@@ -10,7 +10,8 @@ RUN bash /install/ubuntu_install_core.sh
 # Python dependencies.
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     python3-dev python3-pip vim pkg-config libfreetype-dev libpng-dev \
-    gfortran python3-numpy python3-scipy
+    gfortran python3-numpy python3-scipy python3-pil cython3 \
+    python3-matplotlib
 COPY install/requirements.txt /install/requirements.txt
 RUN pip3 install -r /install/requirements.txt
 
