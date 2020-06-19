@@ -42,7 +42,7 @@ RUN tar zxf /install/hbpintool-release.tar.gz && \
 	./configure
 
 RUN apt-get install -y python less curl
-RUN apt-get install -y linux-tools-common linux-tools-generic linux-tools-`uname -r`
+RUN apt-get install -y linux-tools-common linux-tools-generic
 
 # Test script.
 COPY test.sh /test.sh
